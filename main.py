@@ -29,8 +29,9 @@ if __name__ == '__main__':
     else:
         ip_version = IPVersion.V4Only
 
-    desc = {'path': '/~termux/'}
+    desc = {'path': '/'}
     ipv4 = os.popen('ip addr show wlan0 | grep "inet " | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
+    print("IP Address Android: ", ipv4)
     info = ServiceInfo(
         "_http._tcp.local.",
         "Android Test Web Site._http._tcp.local.",
