@@ -1,0 +1,6 @@
+id=MiniMDNS
+name=MiniMDNS
+version=v1.0
+versionCode=1
+author=3nd0y
+description=Call hostname of Adroid phone as local hostname using MDNS
