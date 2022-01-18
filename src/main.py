@@ -10,6 +10,20 @@ from time import sleep
 
 from zeroconf import IPVersion, ServiceInfo, Zeroconf
 
+import socket
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.settimeout(0)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
@@ -30,7 +44,8 @@ if __name__ == '__main__':
         ip_version = IPVersion.V4Only
 
     desc = {'path': '/'}
-    ipv4 = os.popen('ip addr show wlan0 | grep "inet " | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
+#    ipv4 = os.popen('ip addr show wlan0 | grep "inet " | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
+    ipv4 = get_ip()
     print("IP Address Android: ", ipv4)
     info = ServiceInfo(
         "_http._tcp.local.",
