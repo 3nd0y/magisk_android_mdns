@@ -1,5 +1,5 @@
-id=MiniMDNS
-name=MiniMDNS
+id=mDNSD
+name=Multicast MDNS Discovery
 version=v1.0
 versionCode=1
 author=3nd0y

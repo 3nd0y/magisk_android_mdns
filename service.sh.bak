@@ -1,0 +1,16 @@
+#!/system/bin/sh
+# Do NOT assume where your module will be located.
+# ALWAYS use $MODDIR if you need to know where this script
+# and module is placed.
+# This will make sure your module will still work
+# if Magisk change its mount point in the future
+MODDIR=${0%/*}
+CONFIG=$MODDIR/build/etc/ssh.service
+#export LD_LIBRARY_PATH=$MODDIR/build/lib
+MDNSD_FLAGS=-n
+# This script will be executed in late_start service mode
+
+while ! [ `pgrep mdnsd` ] ; do
+#        $MODDIR/build/sbin/mdnsd $MDNSD_FLAGS && sleep 20;
+	LD_LIBRARY_PATH=$MODDIR/build/lib $MODDIR/build/sbin/mdnsd $MDNSD_FLAGS $CONFIG
+done

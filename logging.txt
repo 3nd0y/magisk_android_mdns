@@ -1,0 +1,18 @@
+ipaddr: 22:15:15
+wifi status 22:15:15
+ipaddr: 22:15:25
+wifi status 22:15:26
+ipaddr: 22:15:36
+wifi status 22:15:36
+ipaddr: 22:15:46
+wifi status 22:15:46
+ipaddr: 22:15:56
+wifi status 22:15:56
+ipaddr: 22:16:06
+wifi status 22:16:06
+ipaddr: 22:16:16
+wifi status 22:16:16
+ipaddr: 22:16:26
+wifi status 22:16:26
+ipaddr: 22:16:37
+wifi status 22:16:37
