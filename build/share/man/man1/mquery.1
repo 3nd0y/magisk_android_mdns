@@ -1,0 +1,92 @@
+.\" Copyright (c) 2021-2022  Joachim Wiberg <troglobit@gmail.com>
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are met:
+.\"     * Redistributions of source code must retain the above copyright
+.\"       notice, this list of conditions and the following disclaimer.
+.\"     * Redistributions in binary form must reproduce the above copyright
+.\"       notice, this list of conditions and the following disclaimer in the
+.\"       documentation and/or other materials provided with the distribution.
+.\"     * Neither the name of the copyright holders nor the names of its
+.\"       contributors may be used to endorse or promote products derived from
+.\"       this software without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+.\" WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+.\" IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY
+.\" DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+.\" (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+.\" LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+.\" ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+.\" SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.Dd Jan 4 2022
+.Dt MQUERY 1
+.Os
+.Sh NAME
+.Nm mquery
+.Nd small query tool for multicast DNS
+.Sh SYNOPSIS
+.Nm mquery
+.Op Fl hsv
+.Op Fl i Ar IFACE
+.Op Fl t Ar TYPE
+.Op Fl w Ar SEC
+.Op Ar NAME
+.Sh DESCRIPTION
+.Nm
+is a companion tool to
+.Xr mdnsd 8 ,
+but can also be used stand-alone with other mDNS servers.  It formats
+and sends mDNS service queries, similar to how
+.Xr mdns-scan 1
+works, but with a fraction of the usability.
+.Pp
+.Nm
+runs on the system default interface, derived from the routing table.
+To run on another interface, use the
+.Fl i Ar IFACE
+command line option.  It runs continuously monitoring for responses to
+the initial query, by default
+.Cm _services._dns-sd._udp.local.
+.Pp
+.Sh OPTIONS
+This program follows the usual UNIX command line syntax. The options are
+as follows:
+.Bl -tag
+.It Fl h
+Print a bare bones help message and exits.
+.It Fl i Ar IFACE
+Interface to run query on, by default the system default interface is
+used, derived from the routing table.
+.It Fl s
+By default
+.Nm
+behaves a lot like
+.Xr mdns-scan 1 ,
+which after receiving an initial reply to a scan, sends a specific PTR
+query to the respondent.  This option skips that specific scan and runs
+.Nm
+in a simple mode.
+.It Fl t Ar TYPE
+Query type, default 12 (PTR).
+.It Fl h
+Print a help message and exit.
+.It Fl v
+Show program version.
+.It Fl w Ar SEC
+Delay (approximate) in seconds before automatically exiting.
+.El
+.Sh SEE ALSO
+.Xr mdns-scan 1
+.Xr mdnsd 8 ,
+.Sh AUTHORS
+This mDNS-SD implementation was created in 2003 by
+.An Jeremie Miller Aq jer@jabber.org .
+Much later, in 2016, it was adopted by
+.An Joachim Wiberg Aq troglobit@gmail.com
+for further development and maintenance at GitHub:
+.Aq https://github.com/troglobit/mdnsd .
